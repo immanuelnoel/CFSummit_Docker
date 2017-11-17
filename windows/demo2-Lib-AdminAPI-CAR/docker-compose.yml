@@ -1,0 +1,21 @@
+version: "3"
+services:
+    coldfusion:
+        container_name: myapp
+        build:
+          context: ./app
+          dockerfile: Dockerfile
+        image: app
+        ports:
+        - "8500:8500"
+        volumes:
+        - "/opt/wwwroot:/app"
+        - "/opt/testfiles:/data"
+        env_file:
+        - variables.env 
+        networks:
+        - webnet
+
+networks:
+        webnet:
+

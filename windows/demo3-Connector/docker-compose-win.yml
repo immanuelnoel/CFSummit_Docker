@@ -1,0 +1,31 @@
+version: "3"
+services: 
+    coldfusion: 
+        container_name: myapp
+        image: app 
+        ports:
+        - "8500:8500"
+        volumes:
+        - "c:/wwwroot/:/app"
+        env_file:
+        - variables.env 
+        networks: 
+        - webnet
+
+    apache: 
+        container_name: myws
+        build:
+          context: ./webserver
+          dockerfile: Dockerfile
+        image: coldfusion:2016.0.5-apache 
+        depends_on:
+        - coldfusion
+        ports: 
+        - "8000:80"
+        volumes: 
+        - "c:/wwwroot/:/usr/local/apache2/htdocs"
+        networks: 
+        - webnet
+
+networks:
+        webnet: 

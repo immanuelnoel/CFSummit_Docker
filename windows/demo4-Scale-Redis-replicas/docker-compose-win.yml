@@ -1,0 +1,77 @@
+version: "3"
+services:
+ 
+    coldfusion: 
+        container_name: myapp
+        image: app 
+        depends_on:
+        - redis
+        - addons
+        ports:
+        - "8500:8500"
+        volumes:
+        - "c:/wwwroot/:/app"
+        env_file:
+        - coldfusion.env
+        healthcheck:
+           test: curl -f http://addons:8989/solr/ || exit 1  
+           interval: 1m
+           timeout: 3s
+        deploy:
+           mode: replicated
+           replicas: 2
+           restart_policy:
+              condition: on-failure
+           update_config:
+              parallelism: 1
+              delay: 10s
+        networks: 
+        - webnet
+
+    addons:
+        container_name: mycfaddons
+        image: coldfusion:2016.0.5-addons
+        ports: 
+        - "8989:8989"
+        networks:
+        - webnet
+
+    redis:
+        container_name: myredis
+        image: redis:latest
+        ports:
+        - "6381:6379"
+        volumes:
+        - "redis_data:/data"
+        networks:
+        - webnet
+
+    apache:
+        container_name: myws
+        image: coldfusion:2016.0.5-apache 
+        depends_on:
+        - coldfusion
+        ports:
+        - "8000:80"
+        volumes:
+        - "c:/wwwroot/:/usr/local/apache2/htdocs"
+        healthcheck:
+           test: curl http://localhost/test.cfm || /usr/local/apache2/bin/httpd -k graceful
+           interval: 1m
+           timeout: 3s
+        deploy:
+           mode: replicated
+           replicas: 2
+           restart_policy:
+              condition: on-failure
+           update_config:
+              parallelism: 1
+              delay: 10s
+        networks:
+        - webnet
+
+volumes:
+        redis_data:
+
+networks:
+        webnet: 

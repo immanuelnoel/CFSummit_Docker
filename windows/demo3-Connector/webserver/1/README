@@ -1,0 +1,7 @@
+This file was created by the ColdFusion Connector Installer.
+Do not delete this directory or the files in it because your web server
+configuration files contain references to the files in this directory.
+
+web server: Apache
+web server version: 2.4.18 (Ubuntu)
+directory: /etc/apache2
