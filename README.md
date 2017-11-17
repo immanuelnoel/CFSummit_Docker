@@ -5,9 +5,10 @@ Includes source to build images in demo1 (ColdFusion), and demo6 (API Manager)
 
 ### Usage ###
 
-* windows/commands.txt lists down all commands used during the demo
+* source/commands.txt lists down all commands used during the demo
 * As a best practice, images are built on Linux, and are used in Windows / Linux
 * commands.txt includes comments to indicate the difference in usage on Linux
+* The wwwroot/ directory could be placed at /opt/wwwroot, or C:/wwwroot, for the scripts to work as-is
 
 ### About the ColdFusion image ###    
         
