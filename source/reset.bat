@@ -1,3 +1,2 @@
-docker-compose down
-docker stop $(docker ps -a -q)
-docker rm $(docker ps -a -q)
+FOR /f "tokens=*" %%i IN ('docker ps -a -q') DO docker stop %%i
+FOR /f "tokens=*" %%i IN ('docker ps -a -q') DO docker rm %%i
