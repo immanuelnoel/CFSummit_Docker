@@ -3,7 +3,7 @@ services:
  
     coldfusion: 
         container_name: myapp
-        image: app 
+        image: app-test 
         depends_on:
         - redis
         - addons

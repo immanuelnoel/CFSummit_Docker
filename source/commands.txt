@@ -71,7 +71,7 @@ demo5: In-Place Upgrade - Upgrade to CF Aether
 	// Other options: COPY source to the image during build. Avoid mounting volumes. 
 
 	cd app/
-	docker build -t app .
+	docker build -t app-test .
 	
 	docker stack deploy -c docker-compose-win.yml --with-registry-auth cfscale // Linux: docker stack deploy -c docker-compose.yml --with-registry-auth cfscale
 
