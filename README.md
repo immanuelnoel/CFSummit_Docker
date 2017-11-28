@@ -28,5 +28,9 @@ Includes source to build images in demo1 (ColdFusion), and demo6 (API Manager)
 		-e setupScript=<CFM present in /app>            // Executes the CFM script on ColdFusion startup, and deletes it once a response is received.      
 * <IMPORTANT> Before going live, mount the latest JRE to /opt/coldfusion/jre. This is required due to a security loophole  
 
+### Video Walkthrough ###
+A video walkthrough has been uploaded at YouTube   
+https://youtu.be/ZAqOA5kaYvQ  
+
 ### Disclaimer ###
 This is a work in progress. Make informed choices / customization.     
